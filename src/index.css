@@ -9,7 +9,7 @@
 }
 
 .App{
-    width: 1263px;
+    width: 100%;
     white-space: nowrap;
     overflow-x: scroll;
 }
