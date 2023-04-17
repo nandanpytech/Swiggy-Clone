@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    font-family: 'Manrope', sans-serif !important;
+}
+
+.App{
+    width: 1263px;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+a{
+    text-decoration: none;
+}
+
+.slick-list{
+    padding-left: 1rem !important;
+}
+.Filter-icon{
+    width: 25px;
+    height: 25px;
+    color: #fc8019;
+    border: 1.5px solid #fc8019;
+    border-radius: 50%;
+    margin-left: 8px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#Filter-icon-inside::before{
+    content: "\E92C";
+}
+.menu{
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.MuiBreadcrumbs-separator{
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+}
+.MuiBreadcrumbs-li{
+    display: flex;
+}
+.Carousel-Card{
+    transition: all 15s linear;
+}
+.Carousel-Card:hover{
+    transform: scale(1.05);
+}
+
+.css-1lep0av-MuiPaper-root-MuiAlert-root{
+    width: 70% !important;
+}

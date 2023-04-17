@@ -1,0 +1,1 @@
+const url="https://us1.locationiq.com/v1/search?key=pk.24ce57d909aaf441897ddb9c6c000f95&q=mysore&format=json"
