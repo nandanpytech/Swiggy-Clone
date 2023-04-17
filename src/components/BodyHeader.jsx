@@ -14,7 +14,8 @@ function BodyHeader() {
         }
     `
 
-    const filterdata=(key)=>{
+    const filterdata=(e,key)=>{
+        console.log(e);
         setsorttype(key)
     }
   return (
@@ -23,7 +24,7 @@ function BodyHeader() {
         <Stack display="flex" direction="row">
             <Stack display="flex" direction="row" spacing={1}>
                 <Typography alignSelf="center" variant='h5' fontWeight="800">
-                    1547
+                    15
                 </Typography>
                 <Typography alignSelf="center" variant='h5' fontWeight="800">
                     restaurants
@@ -34,7 +35,7 @@ function BodyHeader() {
                 {
                      Object.keys(filters).map(key => {
                         return (
-                            <Typography alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
+                            <Typography alignSelf="center" variant='subtitle1' onClick={(e)=>filterdata(e,key)}>
                                 {filters[key]}
                              </Typography>
 

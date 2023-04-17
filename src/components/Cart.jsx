@@ -73,11 +73,7 @@ function Cart() {
                             <Typography whiteSpace="normal" minWidth="144px"  fontSize={12} >{element?.OrderedItem?.name}</Typography>
                             <Typography  fontSize={8}>Customizze</Typography>
                         </Stack>
-                          <Btngroup  style={{color:"#60b246",alignSelf:"center"}} variant='outlined'>
-                              <Button>-</Button>
-                              <Button >1</Button>
-                              <Button>+</Button>
-                          </Btngroup>
+                          <Button variant="outlined" style={{border:"1px solid #60b246",color:"#60b246",height:"10vh"}}>Remove</Button>
                           <Typography fontSize={12} style={{alignSelf:"center", marginLeft:"auto !important"}}> ₹{element?.amount}</Typography>
                        </Stack>
                     )

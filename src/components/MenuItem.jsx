@@ -109,7 +109,7 @@ function MenuItem({ItemDetails}) {
                         <CardMedia component="img" width="118px" height="96px" alt="No Image!"  image={Menu_Item_Image+imageId}/>
                     </CardActionArea>
                 </Card>
-                <Button variant='contained' onClick={()=>handleOpen(ItemDetails,{},undefined)} > ADD </Button>
+                <Button variant='contained' onClick={()=>handleOpen(ItemDetails)} > ADD </Button>
             </ItemImage>
             </Stack>
             <Divider/>
