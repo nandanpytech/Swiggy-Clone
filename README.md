@@ -1,7 +1,7 @@
 # Swiggy-Clone
 
 Description:
-I created a Swiggy clone website using ReactJS and Material UI for frontend development and design. The website fetches restaurant data using the Swiggy API and utilizes Redux for efficient cart item management. To enhance user experience, the website features the implementation of Shimmer.
+I created a Swiggy clone website using ReactJS and Material UI for frontend development and design. 
 
 ## Responsibilities:
 - Developed a Swiggy clone website using ReactJS for frontend development
