@@ -15,4 +15,5 @@ I created a Swiggy clone website using ReactJS and Material UI for frontend deve
 - Reactjs, Material UI
 - Redux
 - HTML, CSS,
+- Swiggy API
 - Git
