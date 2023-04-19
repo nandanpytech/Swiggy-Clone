@@ -5,7 +5,7 @@ import {FoodContext }from '../context/Provide'
 import {RestaurantIcon} from '../utils/Icons.js'
 
 
-function BodyHeader() {
+function BodyHeader({setopen}) {
    const {setsorttype}=useContext(FoodContext)
     const Secondstack=styled(Stack)`
         &> h6{
@@ -46,7 +46,7 @@ function BodyHeader() {
                     })
                     
                 }
-                <Stack display="flex"  marginLeft={4} direction="row" spacing={1}>
+                <Stack display="flex"  onClick={()=>setopen(true)}  marginLeft={4} direction="row" spacing={1}>
                         <Typography alignSelf="center" variant='subtitle1' fontWeight="bold">
                                 Filters
                         </Typography>

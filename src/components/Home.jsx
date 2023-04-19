@@ -11,6 +11,7 @@ function Home() {
   const [allRes, setallRes] = useState([])
   const [CarouselCard, setCarouselCard] = useState([])
   const [Filterdata, setFilterdata] = useState([])
+  const [open, setopen] = useState(false)
 
   const fetchallRestaurant=async()=>{
     setallRes([])
@@ -31,9 +32,9 @@ function Home() {
   return (
     <>
         <Carousel CaroCard={CarouselCard}/>
-        <BodyHeader/>
+        <BodyHeader setopen={setopen}/>
         <BodyPart allRestaurant={allRes}/>
-        <Filters Filterdata={Filterdata}/>
+        <Filters open={open} setopen={setopen}Filterdata={Filterdata}/>
     </>
   )
 }

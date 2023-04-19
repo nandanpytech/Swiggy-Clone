@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { FoodContext } from '../context/Provide';
 
 
-function Filters({Filterdata}) {
+function Filters({Filterdata,open,setopen}) {
    const {filters,setfilters}=useContext(FoodContext)
     const FilterBox1=styled(Box)`
         padding: 2rem 2rem;
@@ -54,11 +54,12 @@ function Filters({Filterdata}) {
     <>
      <Drawer
         anchor="right"
-        open={true}
+        open={open}
+        onClose={()=>setopen(false)}
         >
             <Box width="450px">
                 <FilterBox1 display="flex">
-                    <CloseIcon style={{alignSelf:"center"}}/>
+                    <CloseIcon  onClick={()=>setopen(!open)} style={{alignSelf:"center",cursor:"pointer"}}/>
                     <Typography variant='h6' fontWeight="bold"> Filters</Typography>
                 </FilterBox1>
 
