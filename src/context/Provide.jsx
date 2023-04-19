@@ -9,6 +9,7 @@ function Provide({children}) {
   const [inputdata, setinputdata] = useState("Bangalore")
   const [coordinate, setcoordinate] = useState()
   const [sorttype, setsorttype] = useState("RELEVANCE")
+  const [filters, setfilters] = useState([])
 
   const getlocation=async(name)=>{
       const data=await getlocationdata(name)
@@ -28,7 +29,8 @@ function Provide({children}) {
       getlocation,
       coordinate,
       sorttype,
-      setsorttype
+      setsorttype,
+      filters,setfilters
       }}>
         {children}
     </FoodContext.Provider>

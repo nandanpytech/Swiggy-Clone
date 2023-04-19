@@ -60,3 +60,7 @@ a{
     width: 70% !important;
 }
 
+.filterscroll::-webkit-scrollbar {
+    display: none;
+  }
+  

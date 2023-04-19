@@ -20,6 +20,8 @@ import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import HistoryIcon from '@mui/icons-material/History';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+
 export {KeyboardArrowDownIcon,
     SearchIcon,
     DiscountOutlinedIcon,
@@ -40,5 +42,6 @@ export {KeyboardArrowDownIcon,
     FlareIcon,ModeStandbyIcon,
     LocalMallOutlinedIcon,
     CloseIcon,
-    HistoryIcon
+    HistoryIcon,
+    RestaurantIcon
 }

@@ -1,5 +1,4 @@
-import {React,useContext, useEffect} from 'react'
-import { FoodContext } from '../context/Provide';
+import {React,useStat} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -11,6 +10,7 @@ import { Link } from 'react-router-dom';
 import ResCardShimmer from './ResCardShimmer';
 
 function BodyPart({allRestaurant}) {
+
   return (
     <>
     <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  
@@ -22,7 +22,7 @@ function BodyPart({allRestaurant}) {
                 <Link  to={`/restaurant/${element?.data?.id}/${index}`}>
                     <Card elevation={0} sx={{ maxWidth: 245 }}>
                             <CardActionArea>
-                              <CardMedia
+                              <CardMedia 
                                 component="img"
                                 height="140"
                                 src={card_image+element?.data?.cloudinaryImageId}

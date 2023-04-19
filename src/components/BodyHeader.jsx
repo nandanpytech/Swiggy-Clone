@@ -2,6 +2,8 @@ import { Stack, Divider, Typography, Box, styled } from '@mui/material'
 import {React,useContext} from 'react'
 import {filters} from '../utils/const.js'
 import {FoodContext }from '../context/Provide'
+import {RestaurantIcon} from '../utils/Icons.js'
+
 
 function BodyHeader() {
    const {setsorttype}=useContext(FoodContext)
@@ -12,10 +14,12 @@ function BodyHeader() {
         & > h6:hover{
             cursor: pointer;
         }
+        & > div{
+            cursor: pointer;
+        }
     `
 
-    const filterdata=(e,key)=>{
-        console.log(e);
+    const filterdata=(key)=>{
         setsorttype(key)
     }
   return (
@@ -35,20 +39,19 @@ function BodyHeader() {
                 {
                      Object.keys(filters).map(key => {
                         return (
-                            <Typography alignSelf="center" variant='subtitle1' onClick={(e)=>filterdata(e,key)}>
+                            <Typography className={key} alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
                                 {filters[key]}
-                             </Typography>
-
+                            </Typography>
                         )
                     })
                     
                 }
-                <Stack display="flex" marginLeft={4} direction="row" spacing={1}>
+                <Stack display="flex"  marginLeft={4} direction="row" spacing={1}>
                         <Typography alignSelf="center" variant='subtitle1' fontWeight="bold">
                                 Filters
                         </Typography>
-                        <div className='Filter-icon'>
-                            <span id="Filter-icon-inside"></span>
+                        <div className='Filter-icon' style={{alignSelf:"center"}}>
+                            <RestaurantIcon fontSize='14px'/>
                         </div>
                 </Stack>
             </Secondstack>
