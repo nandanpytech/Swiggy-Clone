@@ -1,13 +1,16 @@
 import styled from '@emotion/styled'
-import { Drawer ,Box, Typography,Grid, Button} from '@mui/material'
-import React, { useContext } from 'react'
+import { Drawer ,Box, Typography, Button} from '@mui/material'
+import React, { useEffect } from 'react'
 import { CloseIcon } from '../utils/Icons'
 import Checkbox from '@mui/material/Checkbox';
-import { FoodContext } from '../context/Provide';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFilters } from '../ReduxSlice/FilterSlice';
 
 
 function Filters({Filterdata,open,setopen}) {
-   const {filters,setfilters}=useContext(FoodContext)
+    // const filterItems=useSelector(store=>store.filter.FiltersData)
+    const dispatch=useDispatch()
+    let selectedfilter=[];
     const FilterBox1=styled(Box)`
         padding: 2rem 2rem;
         & > h6 {
@@ -41,15 +44,20 @@ function Filters({Filterdata,open,setopen}) {
         padding: 1rem 3rem;
     `
     const handlecheckbox=(e)=>{
-        // const{value,checked}=e.target
-        // if(checked){
-        //      setfilters([...filters,value])
-        // }else{
-            
-        //     setfilters([filters.filter((data)=>data!=value)])
-        // }
+        const{value,checked}=e.target
+        if(checked){
+             selectedfilter.push(value)
+        }else{
+            selectedfilter=selectedfilter.filter((e)=>e!=value)
+        }
     }
-    console.log(filters);
+
+
+    const showrestaurant=()=>{
+        setopen(false)
+        dispatch(addFilters({selectedfilter}))
+    }
+    
   return (
     <>
      <Drawer
@@ -70,7 +78,9 @@ function Filters({Filterdata,open,setopen}) {
                         Filterdata.map((opt)=>{
                             return(
                                 <Box>
+                                   {
                                     <Checkbox onClick={handlecheckbox} value={opt.option} style={{color:"#fc8019",padding:0} } size='small'/>
+                                   } 
                                     <Typography variant='body2'>{opt.option}</Typography>
                                 </Box>
                             )
@@ -81,7 +91,7 @@ function Filters({Filterdata,open,setopen}) {
 
                 <FilterBox3>
                     <Button variant="outlined" style={{border:"1px solid #535665",padding:".7rem 1.7rem",color:"black"}}>Clear</Button>
-                    <Button variant="contained" style={{padding:".7rem 1.7rem",color:"white",marginLeft:"2rem",background:"#fc8019"}}>Show Restaurants</Button>
+                    <Button variant="contained" onClick={showrestaurant} style={{padding:".7rem 1.7rem",color:"white",marginLeft:"2rem",background:"#fc8019"}}>Show Restaurants</Button>
                 </FilterBox3>
             </Box>
 

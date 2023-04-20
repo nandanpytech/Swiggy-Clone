@@ -5,6 +5,8 @@ import BodyPart from "./BodyPart"
 import { allRestaurant } from '../FetchData/RestaurantData'
 import { FoodContext } from '../context/Provide'
 import Filters from './Filters'
+import { useSelector } from 'react-redux'
+import FiltersApplied from './FiltersApplied'
 
 function Home() {
   const {coordinate,sorttype}=useContext(FoodContext)
@@ -13,9 +15,13 @@ function Home() {
   const [Filterdata, setFilterdata] = useState([])
   const [open, setopen] = useState(false)
 
+  // CuisinesFilters 
+  const filterItems=useSelector(store=>store.filter.FiltersData)  
+
   const fetchallRestaurant=async()=>{
     setallRes([])
     const ResData=await allRestaurant(coordinate,sorttype)
+    console.log(ResData);
     setFilterdata(ResData.data.filters[0].options)
     if(sorttype=="RELEVANCE"){
       setallRes(ResData.data.cards[2].data.data.cards )
@@ -24,6 +30,7 @@ function Home() {
       setallRes(ResData.data.cards[0].data.data.cards  )
     }
   }
+ 
   
   useEffect(() => {
     fetchallRestaurant()
@@ -32,9 +39,10 @@ function Home() {
   return (
     <>
         <Carousel CaroCard={CarouselCard}/>
-        <BodyHeader setopen={setopen}/>
+        <BodyHeader setopen={setopen} allRes={allRes}/>
+        <FiltersApplied/>
         <BodyPart allRestaurant={allRes}/>
-        <Filters open={open} setopen={setopen}Filterdata={Filterdata}/>
+        <Filters open={open} setopen={setopen} Filterdata={Filterdata}/>
     </>
   )
 }

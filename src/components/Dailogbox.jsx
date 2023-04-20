@@ -60,10 +60,6 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
   }
 
  
- 
-
-
-
     const NextStepButton=styled(Button)`
     width: 100%;
     color: #4caf50;

@@ -5,7 +5,7 @@ import {FoodContext }from '../context/Provide'
 import {RestaurantIcon} from '../utils/Icons.js'
 
 
-function BodyHeader({setopen}) {
+function BodyHeader({setopen,allRes}) {
    const {setsorttype}=useContext(FoodContext)
     const Secondstack=styled(Stack)`
         &> h6{
@@ -24,11 +24,11 @@ function BodyHeader({setopen}) {
     }
   return (
    <>
-    <Box sx={{margin:"2rem 1rem"}}>
+    <Box sx={{margin:"2rem 3rem 1rem"}}>
         <Stack display="flex" direction="row">
             <Stack display="flex" direction="row" spacing={1}>
                 <Typography alignSelf="center" variant='h5' fontWeight="800">
-                    15
+                    {allRes.length}
                 </Typography>
                 <Typography alignSelf="center" variant='h5' fontWeight="800">
                     restaurants
