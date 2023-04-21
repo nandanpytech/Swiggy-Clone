@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteFilters } from '../ReduxSlice/FilterSlice'
 
 function FiltersApplied() {
-    const FilterItems=useSelector(store=>store.filter.FiltersData)
+    const FilterItems=useSelector(store=>store.filter.GeneralData.FiltersData)
     const dispatch=useDispatch()
 
     const DeletFilter=(item)=>{

@@ -75,9 +75,9 @@ function Filters({Filterdata,open,setopen}) {
                     <Typography variant='subtitle1' fontWeight="bold">Cuisines</Typography>
                     <FilterBox21>
                        {
-                        Filterdata.map((opt)=>{
+                        Filterdata.map((opt,index)=>{
                             return(
-                                <Box>
+                                <Box key={index}>
                                    {
                                     <Checkbox onClick={handlecheckbox} value={opt.option} style={{color:"#fc8019",padding:0} } size='small'/>
                                    } 

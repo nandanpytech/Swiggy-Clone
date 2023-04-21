@@ -68,9 +68,9 @@ function HomePageDrawer() {
                         <Typography fontSize={12} color="#93959f" style={{padding:"1rem 3.5rem 0"}}>RECENT SEARCHES</Typography>
 
                         {
-                            recentsearches.slice(0).reverse().map((ele)=>{
+                            recentsearches.slice(0).reverse().map((ele,index)=>{
                                 return (
-                                    <Box display="flex"  p={2} pt={0}  gap="1rem" >
+                                    <Box key={index} display="flex"  p={2} pt={0}  gap="1rem" >
                                             <HistoryIcon/>
                                             <Box onClick={()=>setinputdata(ele)} style={{cursor:"pointer"}}>
                                                 <Typography fontSize={15} fontWeight="bold" color="#282c3f">{ele}</Typography>

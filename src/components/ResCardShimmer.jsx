@@ -2,7 +2,7 @@ import { Stack,Box,Skeleton } from '@mui/material'
 import React from 'react'
 
 function ResCardShimmer() {
-    const arry=Array(15).fill(1)
+    const arry=Array(16).fill(1)
   return (
     <>
     <Stack padding={5} display="flex" direction="row" spacing={10} style={{flexWrap:"wrap"}}>

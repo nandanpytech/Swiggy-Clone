@@ -37,9 +37,9 @@ function BodyHeader({setopen,allRes}) {
 
             <Secondstack display="flex" direction="row" spacing={5} sx={{marginLeft:"auto !important"}}>
                 {
-                     Object.keys(filters).map(key => {
+                     Object.keys(filters).map((key,index) => {
                         return (
-                            <Typography className={key} alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
+                            <Typography key={index} className={key} alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
                                 {filters[key]}
                             </Typography>
                         )

@@ -17,4 +17,4 @@ export const filters={
     COST_FOR_TWO:"Cost:Low To High",
     COST_FOR_TWO_H2L:"Cost:Hight To Low "
 }
-    
+

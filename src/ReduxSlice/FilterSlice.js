@@ -1,25 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current } from '@reduxjs/toolkit'
+
 
 const filterslice=createSlice({
     name:"Filters",
     initialState:{
-        FiltersData:[]
+        GeneralData:{
+            FiltersData:[],
+            OffSet:15,
+            AllRestaurant:[]
+        }  
     },
     reducers:{
         addFilters:(state,action)=>{
             const {selectedfilter}=action.payload
-            state.FiltersData=[...selectedfilter]
+            state.GeneralData.FiltersData=[...selectedfilter]
         },
         getFilters:(state)=>{
             return state
         },
         deleteFilters:(state,action)=>{
             const {item}=action.payload
-            state.FiltersData=state.FiltersData.filter((e)=>e!=item)
+            state.GeneralData.FiltersData=state.FiltersData.filter((e)=>e!=item)
+        },
+        offsetincrease:(state,action)=>{
+            const {value}=action.payload
+            if(value){
+                state.OffSet=value
+            }
+           
+        },
+        addRestaurant:(state,action)=>{
+            state.GeneralData.AllRestaurant=action.payload
         }
     }
 })
 
 export default filterslice.reducer
-export const {addFilters,getFilters,deleteFilters}=filterslice.actions
+export const {addFilters,getFilters,deleteFilters,offsetincrease,addRestaurant}=filterslice.actions

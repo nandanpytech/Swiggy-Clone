@@ -5,10 +5,11 @@ import ItemAccordion from './ItemAccordion'
 import RestaurantDetails from './RestaurantDetails'
 import { allRestaurant } from '../FetchData/RestaurantData'
 import { FoodContext } from '../context/Provide'
+import { useSelector } from 'react-redux'
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
-  const [Allrestaurant, setAllrestaurant] = useState([])
+  // const [Allrestaurant, setAllrestaurant] = useState([])
   const {resid}=useParams()
   const {coordinate}=useContext(FoodContext)
  
@@ -24,9 +25,11 @@ function RestaurantMenu() {
   }
 
   //Fetch all Restaurant details
+  const Allrestaurant=useSelector(store=>store.filter.GeneralData.AllRestaurant)
+
   const fetchRestaurantDetails=async()=>{
-    const ResDetils=await allRestaurant(coordinate,"RELEVANCE")
-    setAllrestaurant(ResDetils.data.cards[2].data.data.cards)
+    // const ResDetils=await allRestaurant(coordinate,"RELEVANCE")
+    // setAllrestaurant(ResDetils.data.cards[2].data.data.cards)
   }
 
   useEffect(()=> {

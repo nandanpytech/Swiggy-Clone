@@ -1,4 +1,4 @@
-import {React,useEffect, useContext} from 'react'
+import {React,useEffect, useContext,useState} from 'react'
 import { Box,Divider,Stack,styled, Typography } from '@mui/material'
 import { StarIcon,DirectionsBikeIcon, TimelapseIcon } from '../utils/Icons'
 import { useParams } from 'react-router-dom'
@@ -7,11 +7,14 @@ import { FoodContext } from '../context/Provide'
 
 
 function RestaurantDetails({Allrestaurant}) {
+  // console.log(Allrestaurant);
   const {id}=useParams()
   const {setParticularRes}=useContext(FoodContext)
   useEffect(()=>{
     setParticularRes(Allrestaurant[id])
   },[Allrestaurant])
+
+  
   
     const Namestack=styled(Stack)`
     & > div{
@@ -65,6 +68,9 @@ function RestaurantDetails({Allrestaurant}) {
     }
   
   `
+  const PartiData=Allrestaurant[id]?.data.data || Allrestaurant[id]?.data 
+  console.log(PartiData);
+
   return (
     <>
   {
@@ -75,30 +81,30 @@ function RestaurantDetails({Allrestaurant}) {
     <>
        <Namestack display="flex" mb={2} direction="row" justifyContent="space-between">
       <Box>
-        <Typography variant='h6' component="h6">{Allrestaurant[id]?.data?.name}</Typography>
+        <Typography variant='h6' component="h6">{PartiData?.name}</Typography>
         <Box sx={{display:"flex"}}>
           {
-            Allrestaurant[id].data.cuisines.map((cuisine,index)=>{
+            PartiData?.cuisines.map((cuisine,index)=>{
             return <Typography variant='body2' key={index} component="p">{cuisine},</Typography>
             })
           }
         </Box>
     
    
-        <Typography variant='body2' component="p">{Allrestaurant[id].data.area}, 2.0 km</Typography>
+        <Typography variant='body2' component="p">{PartiData?.area}, 2.0 km</Typography>
       </Box>
 
       <Box>
           <Ratingstack mb={.3} display="flex"  spacing={.5}  direction="row" justifyContent="center">
             <StarIcon />
             <Typography variant='boy1'>
-                {Allrestaurant[id].data.avgRating}
+                {PartiData?.avgRating}
             </Typography>
           </Ratingstack>
             <Divider />
 
             <Typography sx={{fontSize:".7rem !important"}} variant='body1'>
-              {Allrestaurant[id].data.totalRatingsString??"No ratings"}
+              {PartiData?.totalRatingsString??"No ratings"}
             </Typography>
       </Box>
    </Namestack>
@@ -106,7 +112,7 @@ function RestaurantDetails({Allrestaurant}) {
     <DeliveryFee display="flex" mb={2} direction="row" spacing={1}>
       <DirectionsBikeIcon/>
         <Typography>
-          {Allrestaurant[id].data.lastMileTravelString} | ₹29 Delivery fee will apply
+          {PartiData?.lastMileTravelString} | ₹29 Delivery fee will apply
         </Typography>
     </DeliveryFee>
 
@@ -116,13 +122,13 @@ function RestaurantDetails({Allrestaurant}) {
       <Stack display="flex" direction="row" spacing={1}>
         <TimelapseIcon/>
         <Typography variant='body1'>
-            {Allrestaurant[id].data.deliveryTime} MINS
+            {PartiData?.deliveryTime} MINS
         </Typography>
       </Stack>
 
       <Stack display="flex" direction="row" spacing={.5}>
         <Typography variant='body1'>
-             ₹ {Allrestaurant[id].data.costForTwo/100} for two
+             ₹ {PartiData?.costForTwo/100} for two
         </Typography>
       </Stack>
     </DeliveryTime>
