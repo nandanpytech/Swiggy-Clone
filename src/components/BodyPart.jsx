@@ -14,15 +14,13 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 function BodyPart({allRestaurant,getoffesetResData}) {
     const dispatch=useDispatch()
-    
+
     useEffect(()=>{
-      if(allRestaurant.length!=0){
-        dispatch(offsetincrease(allRestaurant.length))
-      }
+      const value=allRestaurant.length
+      dispatch(offsetincrease({value}))
     },[allRestaurant])
-
-
-
+  
+   
     const fetchdata=()=>{
         getoffesetResData()
     }

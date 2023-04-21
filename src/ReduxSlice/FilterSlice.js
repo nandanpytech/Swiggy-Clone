@@ -25,7 +25,8 @@ const filterslice=createSlice({
         offsetincrease:(state,action)=>{
             const {value}=action.payload
             if(value){
-                state.OffSet=value
+                console.log(value);
+                state.GeneralData.OffSet=value
             }
            
         },
