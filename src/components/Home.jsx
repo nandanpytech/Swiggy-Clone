@@ -39,12 +39,12 @@ function Home() {
   }
 
   const getoffesetResData=async()=>{
-    setTimeout(async() => {
+   
       const infinite_scroll_data=await fetchoffsetdata(offset,sorttype,coordinate)
       const real_data= infinite_scroll_data.data.cards
       const mergedata=[...allRes,...real_data]
       dispatch(addRestaurant(mergedata))
-    }, 500);
+
    
   }
  
