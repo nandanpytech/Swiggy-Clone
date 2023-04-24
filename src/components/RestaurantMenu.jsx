@@ -6,6 +6,7 @@ import RestaurantDetails from './RestaurantDetails'
 import { allRestaurant } from '../FetchData/RestaurantData'
 import { FoodContext } from '../context/Provide'
 import { useSelector } from 'react-redux'
+import ResShimmer from './ResShimmer'
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
@@ -45,6 +46,7 @@ function RestaurantMenu() {
         <Breadcrumb/>
         <RestaurantDetails Allrestaurant={Allrestaurant}/>
         {
+          MenuItems.length==0?<ResShimmer/>:
           MenuItems.map((e,index)=>{
             if(e.card.card.title){
               return <ItemAccordion  ItemCards={e?.card?.card?.itemCards || e?.card?.card?.categories} key={index} categorylength={e?.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>

@@ -12,7 +12,7 @@ import { addRestaurant } from '../ReduxSlice/FilterSlice'
 function Home() {
   const {coordinate,sorttype}=useContext(FoodContext)
   const [CarouselCard, setCarouselCard] = useState([])
-  const [Filterdata, setFilterdata] = useState([])
+  const [Filterdata, setFilterdata] = useState({options:[],totalRes:""})
   const [open, setopen] = useState(false)
 
  
@@ -24,20 +24,28 @@ function Home() {
   const fetchallRestaurant=async()=>{
     dispatch(addRestaurant([]))
     const ResData=await allRestaurant(coordinate,sorttype)
-    setFilterdata(ResData.data.filters[0].options)
+    const totalRes=ResData.data.cards[0].data.data.totalRestaurants || ResData.data.cards[2].data.data.totalRestaurants
+    setFilterdata(
+        {...Filterdata,options:ResData.data.filters[0].options,
+          totalRes:totalRes}
+      )
     if(sorttype=="RELEVANCE"){
       dispatch(addRestaurant(ResData.data.cards[2].data.data.cards))
       setCarouselCard(ResData.data.cards[0].data.data.cards)
     }else{
       dispatch(addRestaurant(ResData.data.cards[0].data.data.cards))
     }
+   
   }
 
   const getoffesetResData=async()=>{
-    const infinite_scroll_data=await fetchoffsetdata(offset,sorttype,coordinate)
-    const real_data= infinite_scroll_data.data.cards
-    const mergedata=[...allRes,...real_data]
-    dispatch(addRestaurant(mergedata))
+    setTimeout(async() => {
+      const infinite_scroll_data=await fetchoffsetdata(offset,sorttype,coordinate)
+      const real_data= infinite_scroll_data.data.cards
+      const mergedata=[...allRes,...real_data]
+      dispatch(addRestaurant(mergedata))
+    }, 500);
+   
   }
  
   
@@ -46,15 +54,15 @@ function Home() {
     fetchallRestaurant()
   }, [coordinate,sorttype])
 
-  
+  console.log(Filterdata);
   
   return (
     <>
         <Carousel CaroCard={CarouselCard}/>
-        <BodyHeader setopen={setopen} allRes={allRes} />
+        <BodyHeader setopen={setopen} totalRescount={Filterdata.totalRes}  />
         <FiltersApplied/>
-        <BodyPart allRestaurant={allRes} getoffesetResData={getoffesetResData}/>
-        <Filters open={open} setopen={setopen} Filterdata={Filterdata}/>
+        <BodyPart totalRescount={Filterdata.totalRes} allRestaurant={allRes}  getoffesetResData={getoffesetResData}/>
+        <Filters open={open} setopen={setopen} Filterdata={Filterdata.options}/>
     </>
   )
 }

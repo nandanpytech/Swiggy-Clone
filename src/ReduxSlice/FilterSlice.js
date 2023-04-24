@@ -20,10 +20,10 @@ const filterslice=createSlice({
         },
         deleteFilters:(state,action)=>{
             const {item}=action.payload
-            state.GeneralData.FiltersData=state.FiltersData.filter((e)=>e!=item)
+            state.GeneralData.FiltersData=state.GeneralData.FiltersData.filter((e)=>e!=item)
         },
         offsetincrease:(state,action)=>{
-            const {value}=action.payload
+            const {value}=action.payload    
             if(value){
                 console.log(value);
                 state.GeneralData.OffSet=value

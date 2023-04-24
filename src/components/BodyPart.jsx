@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { offsetincrease } from '../ReduxSlice/FilterSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function BodyPart({allRestaurant,getoffesetResData}) {
+function BodyPart({allRestaurant,getoffesetResData,totalRescount}) {
     const dispatch=useDispatch()
 
     useEffect(()=>{
@@ -35,11 +35,11 @@ function BodyPart({allRestaurant,getoffesetResData}) {
           <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>
              <ResCardShimmer/>
           </Grid>}
-        hasMore={true}
+        hasMore={totalRescount!=allRestaurant.length}
       >
           <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  
             {
-             
+             allRestaurant.length==0?<ResCardShimmer/>:
               allRestaurant.map((element,index)=>{ 
                 const data=element.data.data || element.data
                 return (

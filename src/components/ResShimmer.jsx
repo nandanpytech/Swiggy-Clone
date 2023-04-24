@@ -6,11 +6,11 @@ function ResShimmer() {
   return (
    <>
    <Stack display="flex" spacing={3}>
-    <Box>
+    {/* <Box>
         <Skeleton variant="rectangular" width={210} height={118} />
           <Skeleton  width="80%"/>
         <Skeleton width="60%" />
-    </Box>
+    </Box> */}
     <Box>
        <Skeleton  width="80%"/>
         <Skeleton width="60%" />

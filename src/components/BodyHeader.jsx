@@ -5,11 +5,22 @@ import {FoodContext }from '../context/Provide'
 import {RestaurantIcon} from '../utils/Icons.js'
 
 
-function BodyHeader({setopen,allRes}) {
+function BodyHeader({setopen,totalRescount}) {
    const {setsorttype}=useContext(FoodContext)
     const Secondstack=styled(Stack)`
         &> h6{
-            color: #686b78;
+            
+             & > button{
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+                color: #686b78;
+             }
+             & > button:hover{
+                color: black;
+                font-weight: 700;
+             }
         }
         & > h6:hover{
             cursor: pointer;
@@ -28,7 +39,7 @@ function BodyHeader({setopen,allRes}) {
         <Stack display="flex" direction="row">
             <Stack display="flex" direction="row" spacing={1}>
                 <Typography alignSelf="center" variant='h5' fontWeight="800">
-                    {allRes.length}
+                    {totalRescount}
                 </Typography>
                 <Typography alignSelf="center" variant='h5' fontWeight="800">
                     restaurants
@@ -40,7 +51,7 @@ function BodyHeader({setopen,allRes}) {
                      Object.keys(filters).map((key,index) => {
                         return (
                             <Typography key={index} className={key} alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
-                                {filters[key]}
+                               <button> {filters[key]}</button>
                             </Typography>
                         )
                     })
