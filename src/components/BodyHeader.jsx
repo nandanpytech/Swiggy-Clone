@@ -5,7 +5,7 @@ import {FoodContext }from '../context/Provide'
 import {RestaurantIcon} from '../utils/Icons.js'
 
 
-function BodyHeader({setopen,totalRescount}) {
+function BodyHeader({setopen,totalRescount,filterRestaurantWithActiveFilter}) {
    const {setsorttype}=useContext(FoodContext)
     const Secondstack=styled(Stack)`
         &> h6{
@@ -51,7 +51,7 @@ function BodyHeader({setopen,totalRescount}) {
                      Object.keys(filters).map((key,index) => {
                         return (
                             <Typography key={index} className={key} alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
-                               <button> {filters[key]}</button>
+                               <button onClick={()=>filterRestaurantWithActiveFilter(key)}> {filters[key]}</button>
                             </Typography>
                         )
                     })

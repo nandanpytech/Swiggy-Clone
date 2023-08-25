@@ -4,7 +4,7 @@ import {  Breadcrumbs,Stack,styled } from '@mui/material'
 import { FavoriteBorderIcon,SearchIcon } from '../utils/Icons'
 
 
-function Breadcrumb() {
+function Breadcrumb({RestaurantDetail}) {
   const Bread=styled(Breadcrumbs)`
     &>ol>li>a{
       color: #93959f;
@@ -21,13 +21,7 @@ function Breadcrumb() {
               Home
           </Link>
           <Link underline="hover"  href="">
-              Bangalore
-          </Link>
-          <Link underline="hover"  href="">
-              Brigade Road
-          </Link>
-          <Link underline="hover"  href="">
-              Hotel Empire
+              {RestaurantDetail?.city}
           </Link>
           
       </Bread>

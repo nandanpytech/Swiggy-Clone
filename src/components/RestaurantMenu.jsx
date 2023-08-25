@@ -3,55 +3,43 @@ import { useParams } from 'react-router-dom'
 import Breadcrumb from './Breadcrumb'
 import ItemAccordion from './ItemAccordion'
 import RestaurantDetails from './RestaurantDetails'
-import { allRestaurant } from '../FetchData/RestaurantData'
 import { FoodContext } from '../context/Provide'
 import { useSelector } from 'react-redux'
 import ResShimmer from './ResShimmer'
+import { getlocationdata } from '../FetchData/FetchRegionData'
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
-  // const [Allrestaurant, setAllrestaurant] = useState([])
   const {resid}=useParams()
-  const {coordinate}=useContext(FoodContext)
- 
+  const {inputdata}=useContext(FoodContext)
 
   //Fetch Particular Restaurant Details
   const Particularrestaurantdetails=async(resid)=>{
-    const data= await fetch(coordinate?
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${coordinate.lat}&lng=${coordinate.lon}&restaurantId=${resid}&submitAction=ENTER`:
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9762&lng=77.6033&restaurantId=${resid}&submitAction=ENTER`
-      )
+    let coordinate= await getlocationdata(inputdata=='banglore'?"Bangalore":inputdata)
+
+    const data=await fetch(`https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${coordinate?.coord?.lat}&lng=${coordinate?.coord?.lon}&restaurantId=${resid}`)
     const res= await data.json()
-    setMenuItems(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
+    console.log(res);
+    setMenuItems(res.data.cards)
   }
 
-  //Fetch all Restaurant details
-  const Allrestaurant=useSelector(store=>store.filter.GeneralData.AllRestaurant)
-
-  const fetchRestaurantDetails=async()=>{
-    // const ResDetils=await allRestaurant(coordinate,"RELEVANCE")
-    // setAllrestaurant(ResDetils.data.cards[2].data.data.cards)
-  }
+  console.log(MenuItems);
 
   useEffect(()=> {
     Particularrestaurantdetails(resid)
-    fetchRestaurantDetails()
-  }, [])
+  }, [resid])
 
 
- 
-  
   return (
     <div className="menu" style={{position:"relative"}}>
-        <Breadcrumb/>
-        <RestaurantDetails Allrestaurant={Allrestaurant}/>
+        <Breadcrumb RestaurantDetail={MenuItems[0]?.card.card.info}/>
+        <RestaurantDetails RestaurantDetail={MenuItems[0]?.card.card.info}/>
         {
-          MenuItems.length==0?<ResShimmer/>:
-          MenuItems.map((e,index)=>{
+          MenuItems[2]?.groupedCard.cardGroupMap.REGULAR.cards.length==0?<ResShimmer/>:
+          MenuItems[2]?.groupedCard.cardGroupMap.REGULAR.cards.map((e,index)=>{
             if(e.card.card.title){
               return <ItemAccordion  ItemCards={e?.card?.card?.itemCards || e?.card?.card?.categories} key={index} categorylength={e?.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>
             }
-           
           })
         }
     </div>

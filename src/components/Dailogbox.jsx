@@ -114,7 +114,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
            
               :
               <NextStepButton onClick={()=>handleOrderedItem(ItemDetails,bill)}  variant="outlined">
-                 <Typography variant='body2' fontWeight={700}>{`Total ₹${420}`}</Typography>
+                 <Typography variant='body2' fontWeight={700}>{`Total Price`}</Typography>
                  <Typography variant='body2' fontWeight={700}>Add Item</Typography>
               </NextStepButton>
              

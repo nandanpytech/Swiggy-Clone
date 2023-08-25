@@ -6,16 +6,11 @@ import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./Store/store";
 import HomePageDrawer from "./components/HomePageDrawer";
-import { useEffect } from "react";
+
+
+
 
 function App() {
-  useEffect(() => {
-    alert("Use CORS extension in PC to see live website...");
-    if (confirm("Are you sure you want to navigate to Chrome CORS?")) {
-      window.location.href = "https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en";
-    }
-  }, []);
-
   return (
     <div className="App">
       <Provider store={store}>
@@ -37,7 +32,7 @@ export const route = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/restaurant/:resid/:id",
+        path: "/restaurant/:resid",
         element: <RestaurantMenu />,
       },
       {
@@ -49,3 +44,5 @@ export const route = createBrowserRouter([
 ]);
 
 export default App;
+
+

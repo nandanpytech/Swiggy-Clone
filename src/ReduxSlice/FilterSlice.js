@@ -6,7 +6,6 @@ const filterslice=createSlice({
     initialState:{
         GeneralData:{
             FiltersData:[],
-            OffSet:15,
             AllRestaurant:[]
         }  
     },
@@ -22,19 +21,12 @@ const filterslice=createSlice({
             const {item}=action.payload
             state.GeneralData.FiltersData=state.GeneralData.FiltersData.filter((e)=>e!=item)
         },
-        offsetincrease:(state,action)=>{
-            const {value}=action.payload    
-            if(value){
-                console.log(value);
-                state.GeneralData.OffSet=value
-            }
-           
-        },
         addRestaurant:(state,action)=>{
+            console.log(action.payload);
             state.GeneralData.AllRestaurant=action.payload
         }
     }
 })
 
 export default filterslice.reducer
-export const {addFilters,getFilters,deleteFilters,offsetincrease,addRestaurant}=filterslice.actions
+export const {addFilters,getFilters,deleteFilters,addRestaurant}=filterslice.actions

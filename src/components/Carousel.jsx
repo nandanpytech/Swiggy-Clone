@@ -8,13 +8,13 @@ import CarouselShimmer from './CarouselShimmer';
 
 function Carousel({CaroCard}) {
     const [showPrev, setshowPrev] = useState(false)
-
+    console.log(CaroCard);
     const slider = useRef(null)
     var settings = {
         arrows: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1
       };
     
@@ -50,7 +50,7 @@ function Carousel({CaroCard}) {
                         {
                             CaroCard.map((element,index)=>{
                             return (<Card key={index} className='Carousel-Card' sx={{width:"max-content !important"}}>
-                                        <CardMedia sx={{ height: 260, width:260 }} image={Carousel_Image_Url+"/"+element.data.creativeId}/>
+                                        <CardMedia sx={{ height: 260, width:410 }} image={Carousel_Image_Url+"/"+element.imageId}/>
                                     </Card>)
                             })
                         }

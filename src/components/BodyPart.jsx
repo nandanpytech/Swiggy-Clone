@@ -8,43 +8,31 @@ import { StarIcon } from '../utils/Icons';
 import { card_image } from '../utils/Images';
 import { Link } from 'react-router-dom';
 import ResCardShimmer from './ResCardShimmer';
-import { useDispatch } from 'react-redux';
-import { offsetincrease } from '../ReduxSlice/FilterSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function BodyPart({allRestaurant,getoffesetResData,totalRescount}) {
-    const dispatch=useDispatch()
-
-    useEffect(()=>{
-      const value=allRestaurant.length
-      dispatch(offsetincrease({value}))
-    },[allRestaurant])
-  
-   
+function BodyPart({filterRestaurant,getoffesetResData,totalRescount}) {
     const fetchdata=()=>{
         getoffesetResData()
     }
-
-
   return (
     <>
      <InfiniteScroll
-        dataLength={allRestaurant.length}
+        dataLength={filterRestaurant.length}
         next={fetchdata}
         loader={
           <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>
              <ResCardShimmer/>
           </Grid>}
-        hasMore={totalRescount!=allRestaurant.length}
+        hasMore={totalRescount!=filterRestaurant.length}
       >
           <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  
             {
-             allRestaurant.length==0?<ResCardShimmer/>:
-              allRestaurant.map((element,index)=>{ 
-                const data=element.data.data || element.data
+             filterRestaurant.length==0?<ResCardShimmer/>:
+              filterRestaurant?.map((element,index)=>{ 
+                const data=element.info 
                 return (
                     <Grid key={index} item xs={3}>
-                      <Link  to={`/restaurant/${data?.id}/${index}`}>
+                      <Link  to={`/restaurant/${data?.id}`}>
                           <Card elevation={0} sx={{ maxWidth: 245 }}>
                                   <CardActionArea>
                                     <CardMedia 
@@ -80,8 +68,8 @@ function BodyPart({allRestaurant,getoffesetResData,totalRescount}) {
                                               </Box>
                                           </Stack>
                     
-                                          <Typography fontSize=".7rem" variant='body1'> {data?.deliveryTime} mins</Typography>
-                                          <Typography fontSize=".7rem" variant='body1'> ₹{data?.costForTwo/100} FOR TWO</Typography>
+                                          <Typography fontSize=".7rem" variant='body1'> {data?.sla?.deliveryTime} mins</Typography>
+                                          <Typography fontSize=".7rem" variant='body1'> ₹{data?.costForTwo}</Typography>
                     
                                         
                                       </Stack>
